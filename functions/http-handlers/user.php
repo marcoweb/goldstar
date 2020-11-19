@@ -7,16 +7,18 @@ function list_get() {
     return view(['users' => $users]);
 }
 
-function create_get() {
+function create_get($idRole) {
     $authorized_roles = ['admin'];
     if(USER_SELF_REGISTER) {
         array_push($authorized_roles, 'user');
     }
     authorize($authorized_roles);
-    return view();
+    loadFunctions('core/database');
+    $roles = simpleSelect('roles');
+    return view(['role' => $idRole]);
 }
 
-function create_post($email, $password, $confirm_password) {
+function create_post($email, $password, $confirm_password, $role) {
     $authorized_roles = ['admin'];
     if(USER_SELF_REGISTER) {
         array_push($authorized_roles, 'user');

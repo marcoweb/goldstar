@@ -1,4 +1,5 @@
 <form action="/user/create" method="post">
+    <input type="hidden" name="role" value="<?= $roleId?>" />
     <label for="email">EMail</label>
     <input type="email" name="email" />
     <label for="password">Senha</label>
